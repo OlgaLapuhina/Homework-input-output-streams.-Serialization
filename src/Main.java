@@ -3,15 +3,15 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
         Scanner scanner = new Scanner(System.in);
         Basket basket = new Basket(new int[]{50, 14, 80, 100}, new String[]{"Молоко", "Хлеб", "Гречневая крупа", "Сыр"});
 
-        File file = new File("basket.txt");
+        File file = new File("basket.bin");
 
         if (file.exists()) {
             System.out.println("Восстанавливаем корзину из файла: ");
-            Basket.loadFromTxtFile(file);
+            Basket.loadFromBinFile(file);
         } else {
             System.out.println("Файл с данными не найден, заполните корзину вручную.");
             System.out.println("Список возможных товаров для покупки:");
@@ -30,7 +30,8 @@ public class Main {
             }
             basket.printCart();
 
-            basket.saveTxt(file);
+            basket.saveBin(file);
+            System.out.println("Данные корзины сохранены в файле - basket.bin");
         }
     }
 }
